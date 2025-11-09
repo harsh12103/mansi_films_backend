@@ -45,12 +45,14 @@ app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
+
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "admin",
-  database: "mansi_films",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
 });
+
 
 db.connect((err) => {
   if (err) console.error("❌ MySQL Error:", err);
